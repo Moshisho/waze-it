@@ -13,11 +13,10 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            LOGGER.info("Started...");
-            browser = WebDriverFactory.get(args[0]);
+            WazeHomePage wazeHomePage = openWazeHome(args[0]);
+            wazeHomePage.goToLiveMap();
 
             LOGGER.info(browser.getTitle());
-
 
 
         } catch (Exception global) {
@@ -25,6 +24,12 @@ public class Main {
         } finally {
             browser.close();
         }
+    }
+
+    private static WazeHomePage openWazeHome(String browserName) {
+        LOGGER.info("Started...");
+        browser = WebDriverFactory.get(browserName);
+        return new WazeHomePage(browser);
     }
 
 
