@@ -9,6 +9,7 @@ import org.mosh.solutions.pages.WazeRoutesElement;
 import org.mosh.solutions.utils.GoogleMail;
 import org.openqa.selenium.WebDriver;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.logging.Logger;
@@ -52,7 +53,9 @@ public class Main {
             for (RouteResult rr : results) {
                 sb.append(rr.toString() + "\n");
             }
-            GoogleMail.Send("miron.jengo", "po09!@QW", emailTo,
+            GoogleMail.Send("miron.jengo",
+                    new String(Base64.getDecoder().decode("cG8wOSFAUVc=".getBytes())),
+                    emailTo,
                     "Waze Results", sb.toString());
             LOGGER.info("************* SUCCESS - Finished *************");
         } catch (Exception global) {
